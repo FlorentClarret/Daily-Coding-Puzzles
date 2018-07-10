@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    working_directory: ~/daily-coding-puzzles
+
+    environment:
+      MAVEN_OPTS: -Xmx2000m
+    
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - daily-coding-puzzles-dependencies-{{ checksum "pom.xml" }}
+          - daily-coding-puzzles-dependencies-
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: daily-coding-puzzles-dependencies-{{ checksum "pom.xml" }}
+
+      - run: mvn clean
+
+      - run: mvn install
+
