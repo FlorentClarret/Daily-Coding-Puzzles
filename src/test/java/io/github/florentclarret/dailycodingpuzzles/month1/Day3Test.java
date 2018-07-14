@@ -16,4 +16,16 @@ public class Day3Test {
         Assertions.assertFalse(Day3.checkPermutation("abcd", "dcbaa"));
         Assertions.assertFalse(Day3.checkPermutation("abcd", ""));
     }
+
+    @Test
+    public void testCheckPermutation2() {
+        Assertions.assertTrue(Day3.checkPermutation2("", ""));
+        Assertions.assertTrue(Day3.checkPermutation2("a", "a"));
+        Assertions.assertTrue(Day3.checkPermutation2("toto", "toto"));
+        Assertions.assertTrue(Day3.checkPermutation2("abcd", "dbac"));
+        Assertions.assertTrue(Day3.checkPermutation2("abcd", "dcba"));
+
+        Assertions.assertFalse(Day3.checkPermutation2("abcd", "dcbaa"));
+        Assertions.assertFalse(Day3.checkPermutation2("abcd", ""));
+    }
 }
